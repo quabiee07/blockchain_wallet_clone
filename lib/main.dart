@@ -1,4 +1,5 @@
-import 'package:blockchain/auth_screen.dart';
+import 'package:blockchain/pages/auth_screen.dart';
+import 'package:blockchain/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,10 +16,10 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Blockchain.com',
-      home:  Auth(),
+      home:  HomePage(),
   
     );
   }

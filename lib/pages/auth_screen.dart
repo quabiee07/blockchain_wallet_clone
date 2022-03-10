@@ -1,7 +1,8 @@
 import 'package:blockchain/constants.dart';
-import 'package:blockchain/home_page.dart';
+import 'package:blockchain/pages/home_page.dart';
 import 'package:blockchain/local_auth.dart';
 import 'package:blockchain/widgets/button.dart';
+import 'package:blockchain/widgets/numpad.dart';
 import 'package:blockchain/widgets/pin_fields.dart';
 import 'package:flutter/material.dart';
 
