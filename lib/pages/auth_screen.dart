@@ -1,19 +1,34 @@
 import 'package:blockchain/constants.dart';
 import 'package:blockchain/pages/home_page.dart';
 import 'package:blockchain/local_auth.dart';
-import 'package:blockchain/widgets/button.dart';
 import 'package:blockchain/widgets/numpad.dart';
 import 'package:blockchain/widgets/pin_fields.dart';
 import 'package:flutter/material.dart';
 
-class Auth extends StatelessWidget {
-    Auth({Key? key}) : super(key: key);
+class Auth extends StatefulWidget {
+   const Auth({Key? key}) : super(key: key);
 
-final TextEditingController _controller = TextEditingController();
+  @override
+  State<Auth> createState() => _AuthState();
+}
+
+class _AuthState extends State<Auth> {
+  late TextEditingController _controller;
+
+@override
+void initState() {
+  _controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();  
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
           body:  SafeArea(
             child: SingleChildScrollView(
@@ -40,8 +55,8 @@ final TextEditingController _controller = TextEditingController();
                   height: 30,
                 ),
                 Center(
-                  child: Image.network(
-                    'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/krinnxb23kgp75s0jyhp',
+                  child: Image.asset(
+                    'assets/logo.png',
                     scale: 2.5,
                   ),
                 ),
@@ -60,7 +75,7 @@ final TextEditingController _controller = TextEditingController();
                 const SizedBox(
                   height: 30,
                 ),
-                buildInput(),
+                buildInput(_controller),
                 const SizedBox(
                   height: 10,
                 ),
@@ -81,7 +96,7 @@ final TextEditingController _controller = TextEditingController();
                   ),
                 ),
                 NumPad(
-                  controller: _controller, 
+                  controller: _controller,
                   delete: () {
                     _controller.text = _controller.text
                     .substring(0, _controller.text.length -1);
@@ -93,16 +108,14 @@ final TextEditingController _controller = TextEditingController();
                     ),
             ),
           ),
-     );
+     );   
   }
-
 
   Widget buildAuthenticate(BuildContext context){
   return Center(
     child: GestureDetector(
       onTap: () async {
         final isAuthenticated = await LocalAuthAPI.authenticate();
-
         if(isAuthenticated){
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const HomePage())
@@ -117,6 +130,4 @@ final TextEditingController _controller = TextEditingController();
       ),
   );
 }
-
 }
-

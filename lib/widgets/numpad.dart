@@ -30,7 +30,7 @@ class NumButton extends StatelessWidget {
                   number.toString(),
                   style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 15,
+                      fontSize: 20,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -40,7 +40,7 @@ class NumButton extends StatelessWidget {
                 text,
                 style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 16,
                     fontWeight: FontWeight.normal),
               ),
             ),
@@ -163,7 +163,7 @@ class NumPad extends StatelessWidget {
                     delete;
                   },
                   icon: Image.asset("assets/clear.png"),
-                  iconSize: 50,
+                  iconSize: 40,
                 )
               ],
             ),

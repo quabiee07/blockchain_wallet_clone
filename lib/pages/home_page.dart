@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
                 "Welcome to \nBlockchain.com!",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 20,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w700),
               ),
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
                 "All your crypto balances will show up \n here once you buy or receive.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 15,
                     fontWeight: FontWeight.w400),
             ),
             ),

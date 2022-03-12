@@ -5,12 +5,15 @@ Widget buildButton(BuildContext context) {
   final width = MediaQuery.of(context).size.width;
   final ButtonStyle style = ElevatedButton.styleFrom(
       primary: secondaryColor, minimumSize:  Size(width, 50));
-  return ElevatedButton(
-      style: style,
-      onPressed: () {},
-      child: const Text('Buy Crypto',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400)));
+  return Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: ElevatedButton(
+        style: style,
+        onPressed: () {},
+        child: const Text('Buy Crypto',
+            style: TextStyle(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400))),
+  );
 }
 
 Widget buildTextButton(BuildContext context) {
@@ -20,12 +23,10 @@ Widget buildTextButton(BuildContext context) {
   final ButtonStyle style = ButtonStyle(
     minimumSize: MaterialStateProperty.all( Size(width /2, 50)),
       side: MaterialStateProperty.all(
-        
            BorderSide(width: 1, color: Colors.grey[300]!, )),
-      foregroundColor: MaterialStateProperty.all(secondaryColor),
-      padding: MaterialStateProperty.all(
-          const EdgeInsets.symmetric(vertical: 10, horizontal: 50)));
+      foregroundColor: MaterialStateProperty.all(secondaryColor));
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       TextButton(
           style: style,
@@ -37,9 +38,7 @@ Widget buildTextButton(BuildContext context) {
           style: style,
           onPressed: () {},
           child: const Text(
-            'Deposit',
-           
-           
+            'Deposit',          
           ))
     ],
   );
