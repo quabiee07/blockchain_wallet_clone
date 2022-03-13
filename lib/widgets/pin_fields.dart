@@ -1,4 +1,3 @@
-import 'dart:js';
 
 import 'package:blockchain/constants.dart';
 import 'package:blockchain/widgets/circle.dart';

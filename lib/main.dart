@@ -1,5 +1,6 @@
 import 'package:blockchain/pages/auth_screen.dart';
 import 'package:blockchain/pages/home_page.dart';
+import 'package:blockchain/pages/prices_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Blockchain.com',
-      home:  Auth(),
+      home:  PricePage(),
   
     );
   }
