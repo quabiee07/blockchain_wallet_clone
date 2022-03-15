@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class PricePage extends StatelessWidget {
   PricePage({Key? key}) : super(key: key);
@@ -48,10 +47,7 @@ class PricePage extends StatelessWidget {
     0.57
   ];
 
-  @override
-  Widget build(BuildContext context) {
-
-    List<String> images = [
+  List<String> images = [
     "assets/bitcoin-btc-logo.png",
     "assets/ethereum-eth-logo.png",
     "assets/dogecoin-doge-logo.png",
@@ -64,6 +60,9 @@ class PricePage extends StatelessWidget {
     "assets/xrp-xrp-logo.png",
     "assets/tether-usdt-logo.png"
   ];
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(

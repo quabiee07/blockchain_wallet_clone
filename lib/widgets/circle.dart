@@ -1,4 +1,4 @@
-import 'package:blockchain/constants.dart';
+import 'package:blockchain/color.dart';
 import 'package:flutter/material.dart';
 
 class Circle extends CustomPainter{

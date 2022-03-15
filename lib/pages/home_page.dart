@@ -1,6 +1,6 @@
-import 'package:blockchain/constants.dart';
 import 'package:blockchain/widgets/button.dart';
 import 'package:flutter/material.dart';
+import 'package:blockchain/color.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
