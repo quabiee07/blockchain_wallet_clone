@@ -56,11 +56,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         },
         child: Container(
           height: 60,
-
           width: MediaQuery.of(context).size.width / _iconList.length,
           decoration: index == _selectedIndex
               ?  const BoxDecoration(
-                  border:  Border(
+                  border: Border(
+
                     top: BorderSide(width: 2, color: secondaryColor),
                   ),
                   // gradient: LinearGradient(colors: [
@@ -69,20 +69,24 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   // ], begin: Alignment.bottomCenter, end: Alignment.topCenter)
                   )
               : const BoxDecoration(),
-          child: Column(children: [
-            Icon(icon,
-                color: index == _selectedIndex
-                    ? secondaryColor
-                    : Colors.grey[400]),
-            Text(
-              text,
-              style: TextStyle(
-                  fontSize: 10,
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+              Icon(icon,
                   color: index == _selectedIndex
                       ? secondaryColor
                       : Colors.grey[400]),
-            )
-          ]),
+              Text(
+                text,
+                style: TextStyle(
+                    fontSize: 10,
+                    color: index == _selectedIndex
+                        ? secondaryColor
+                        : Colors.grey[400]),
+              )
+            ]),
+          ),
         ));
   }
 }

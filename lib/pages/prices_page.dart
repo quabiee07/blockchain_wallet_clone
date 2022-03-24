@@ -64,39 +64,32 @@ class PricePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          "Prices",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.qr_code_scanner_rounded,
+                color: Colors.grey,
+                size: 30,
+              )),
+          const SizedBox(width: 5),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.person_rounded,
+                color: Colors.grey,
+                size: 30,
+              )),
+        ],),
+      body:  Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Row(
-                children: [
-                  const Text(
-                    "Prices",
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    width: 150,
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.qr_code_scanner_rounded,
-                        color: Colors.grey,
-                        size: 30,
-                      )),
-                  const SizedBox(width: 5),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.person_rounded,
-                        color: Colors.grey,
-                        size: 30,
-                      )),
-                ],
-              ),
-            ),
             const SizedBox(
               height: 10,
             ),
@@ -130,7 +123,7 @@ class PricePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final dynamic image = (images as List)[index];
                   return ListTile(
-                    leading: Image.asset(image, scale: 2,),
+                    leading: Image.asset(image, scale: 1,),
                     title: Text(
                       currencyName[index],
                       style: const TextStyle(
@@ -148,7 +141,7 @@ class PricePage extends StatelessWidget {
                           width: 15,
                         ),
                         Text(
-                          '${percentage[index]} %',
+                          '${percentage[index]}%',
                           style: const TextStyle(
                               fontSize: 16, color: Colors.green),
                         ),
@@ -164,7 +157,8 @@ class PricePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+
+
     );
   }
 }

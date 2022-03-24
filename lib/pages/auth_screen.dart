@@ -17,8 +17,9 @@ class _AuthState extends State<Auth> {
 
   @override
   void initState() {
-    _controller = TextEditingController();
     super.initState();
+    _controller = TextEditingController();
+    buildAuthentication(context);
   }
 
   @override
@@ -77,12 +78,18 @@ class _AuthState extends State<Auth> {
               const SizedBox(
                 height: 30,
               ),
-              // buildInput(_controller),
-              FilledRoundedPinPut(),
+              const FilledRoundedPinPut(),
               const SizedBox(
                 height: 10,
               ),
-              buildAuthenticate(context),
+
+              IconButton(
+                  onPressed: () => buildAuthentication(context),
+                  icon: const Icon(
+                    Icons.fingerprint_rounded,
+                    color: primaryDark,
+                    size: 45,
+                  )),
               const SizedBox(
                 height: 30,
               ),
@@ -98,7 +105,6 @@ class _AuthState extends State<Auth> {
                   ],
                 ),
               ),
-
               NumPad(controller: _controller)
             ],
           ),
@@ -107,26 +113,11 @@ class _AuthState extends State<Auth> {
     );
   }
 
-  Widget buildAuthenticate(BuildContext context) {
-    return Center(
-      child: GestureDetector(
-        onTap: () async {
-          final isAuthenticated = await LocalAuthAPI.authenticate();
-          if (isAuthenticated) {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const HomePage()));
-          } else {
-            showModalBottomSheet(
-                context: context,
-                builder: (context) => NumPad(controller: _controller));
-          }
-        },
-        child: const Icon(
-          Icons.fingerprint_rounded,
-          color: primaryDark,
-          size: 45,
-        ),
-      ),
-    );
+  buildAuthentication(context) async {
+    final isAuthenticated = await LocalAuthAPI.authenticate();
+    if (isAuthenticated) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomePage()));
+    }
   }
 }

@@ -45,16 +45,24 @@ import 'package:pinput/pinput.dart';
 import '../color.dart';
 
 class FilledRoundedPinPut extends StatefulWidget {
+
+  const FilledRoundedPinPut({Key? key,}) : super(key: key);
   @override
   _FilledRoundedPinPutState createState() => _FilledRoundedPinPutState();
 
-  @override
-  String toStringShort() => 'Rounded Filled';
+
 }
 
 class _FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
-  final controller = TextEditingController();
-  final focusNode = FocusNode();
+  late final controller;
+  late final focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+    focusNode = FocusNode();
+  }
 
   @override
   void dispose() {
@@ -67,7 +75,7 @@ class _FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
 
   @override
   Widget build(BuildContext context) {
-    final length = 4;
+    const length = 4;
     final defaultPinTheme = PinTheme(
       width: 35,
       height: 35,
@@ -86,10 +94,11 @@ class _FilledRoundedPinPutState extends State<FilledRoundedPinPut> {
         length: length,
         controller: controller,
         focusNode: focusNode,
+        autofocus: true,
         defaultPinTheme: defaultPinTheme,
         keyboardType: TextInputType.none,
         onCompleted: (pin) {
-          setState(() => showError = pin != '5555');
+          setState(() => showError = pin != controller.text);
         },
         focusedPinTheme: defaultPinTheme,
         obscureText: true,

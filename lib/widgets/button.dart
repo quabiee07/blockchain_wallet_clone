@@ -1,7 +1,7 @@
 import 'package:blockchain/color.dart';
 import 'package:flutter/material.dart';
 
-Widget buildButton(BuildContext context) {
+Widget buildButton(BuildContext context, title) {
   final width = MediaQuery.of(context).size.width/1.129;
   final ButtonStyle style = ElevatedButton.styleFrom(
      padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -11,8 +11,8 @@ Widget buildButton(BuildContext context) {
     child: ElevatedButton(
         style: style,
         onPressed: () {},
-        child: const Text('Buy Crypto',
-            style: TextStyle(
+        child:  Text(title,
+            style: const TextStyle(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400))),
   );
 }
