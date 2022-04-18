@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class PricePage extends StatelessWidget {
-  PricePage({Key? key}) : super(key: key);
+import 'settings_page.dart';
 
+class PricePage extends StatefulWidget {
+  const PricePage({Key? key}) : super(key: key);
+
+  @override
+  State<PricePage> createState() => _PricePageState();
+}
+
+class _PricePageState extends State<PricePage> {
   final List<String> currencyName = [
     "Bitcoin",
     "Ether",
@@ -16,8 +23,6 @@ class PricePage extends StatelessWidget {
     "Xpr",
     "Tether"
   ];
-
-  
 
   final List<double> price = [
     38882.47,
@@ -61,6 +66,33 @@ class PricePage extends StatelessWidget {
     "assets/tether-usdt-logo.png"
   ];
 
+  //This list holds data for the list view
+  List<String> foundCrypto = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    //at start, all crypto currency are shown
+    foundCrypto = currencyName;
+    super.initState();
+  }
+
+  //this func is called whenever the textField changes
+  // void runFilter(String keyword){
+  //   List<String> results =[];
+  //   if(keyword.isEmpty){
+  //     //if search field is empty or contains white-spaces, display all crypto currency
+  //     results = currencyName;
+  //   } else {
+  //     results = currencyName.where((element) =>
+  //         element[currencyName as int].toLowerCase().contains(keyword.toLowerCase())).toList();
+  //   }
+  //
+  //   setState(() {
+  //     foundCrypto = results;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +113,11 @@ class PricePage extends StatelessWidget {
               )),
           const SizedBox(width: 5),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const SettingsPage())
+                  );
+              },
               icon: const Icon(
                 Icons.person_rounded,
                 color: Colors.grey,

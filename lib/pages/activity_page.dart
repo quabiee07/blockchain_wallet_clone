@@ -2,6 +2,8 @@ import 'package:blockchain/color.dart';
 import 'package:blockchain/widgets/activity_modal_sheet.dart';
 import 'package:flutter/material.dart';
 
+import 'settings_page.dart';
+
 class ActivityPage extends StatefulWidget {
   const ActivityPage({Key? key}) : super(key: key);
 
@@ -31,7 +33,11 @@ class _ActivityPageState extends State<ActivityPage> {
               )),
           const SizedBox(width: 5),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const SettingsPage())
+                  );
+              },
               icon: const Icon(
                 Icons.person_rounded,
                 color: Colors.grey,

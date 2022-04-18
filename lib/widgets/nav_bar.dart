@@ -41,8 +41,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       _navBarItemList.add(buildNavBarItem(_iconList[i], _text[i], i));
     }
 
-    return Row(
-      children: _navBarItemList,
+    return SafeArea(
+      child: Row(
+        children: _navBarItemList,
+      ),
     );
   }
 
@@ -60,13 +62,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           decoration: index == _selectedIndex
               ?  const BoxDecoration(
                   border: Border(
-
                     top: BorderSide(width: 2, color: secondaryColor),
                   ),
-                  // gradient: LinearGradient(colors: [
-                  //   Colors.green.withOpacity(0.3),
-                  //   Colors.green.withOpacity(0.015),
-                  // ], begin: Alignment.bottomCenter, end: Alignment.topCenter)
                   )
               : const BoxDecoration(),
           child: Expanded(

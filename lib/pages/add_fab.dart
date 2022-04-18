@@ -23,11 +23,11 @@ class AddFabPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 20,),
-        Expanded(
-          child: ListView.separated(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(height: 20,),
+          ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 final dynamic icon = (icons as List)[index];
@@ -48,19 +48,19 @@ class AddFabPage extends StatelessWidget {
               },
               separatorBuilder: (context, index) => const Divider(),
               itemCount: title.length),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              buildBtn(context, 'Sell', btnDark),
-              buildBtn(context, 'Buy', popBlue)
-
-            ]
-          ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                buildBtn(context, 'Sell', btnDark),
+                buildBtn(context, 'Buy', popBlue)
+              
+              ]
+            ),
+          )
+        ],
+      ),
     );
   }
 }

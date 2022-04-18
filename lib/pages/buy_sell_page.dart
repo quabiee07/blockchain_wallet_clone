@@ -3,6 +3,9 @@ import 'package:blockchain/widgets/button.dart';
 import 'package:blockchain/widgets/circle.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/sliver_header.dart';
+import 'settings_page.dart';
+
 class BuyNSell extends StatefulWidget {
   const BuyNSell({Key? key}) : super(key: key);
 
@@ -35,7 +38,11 @@ class _BuyNSellState extends State<BuyNSell> {
                 )),
             const SizedBox(width: 5),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const SettingsPage())
+                  );
+                },
                 icon: const Icon(
                   Icons.person_rounded,
                   color: Colors.grey,
@@ -132,15 +139,13 @@ class _BuyTabState extends State<BuyTab> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      semanticChildCount: 11,
       slivers: [
         const SliverHeader(),
         SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            final image = (images as List)[index];
+          delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
             return ListTile(
               leading: Image.asset(
-                image,
+                images[index],
                 scale: 2,
               ),
               title: Text(
@@ -164,8 +169,12 @@ class _BuyTabState extends State<BuyTab> {
                 ],
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: (){ },
             );
-          }),
+            
+          },
+          childCount: images.length,
+          ),       
         ),
       ],
     );
@@ -182,128 +191,60 @@ class SellTab extends StatefulWidget {
 class _SellTabState extends State<SellTab> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:  [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Icon(
-              Icons.shopping_cart,
-              color: secondaryColor,
-              size: 35,
+    return SingleChildScrollView(
+      child: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children:  [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Icon(
+                Icons.shopping_cart,
+                color: secondaryColor,
+                size: 35,
+              ),
             ),
-          ),
-          const Padding(
-             padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10),
-            child: Text('Sell Crypto', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),) ,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10),
-            child: Text('Verify your identity to sell crypto for cash', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600,color: Colors.grey),) ,
-          ),
-          const Divider(thickness: 0.5,),
-          const SizedBox(height: 20),
-          const ListTile(
-            leading: Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
-            title: Text('Verify Your Identity', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black87),),
-            subtitle: Text('To prevent identity theft or fraud, we\'ll need a make sure it\'s really you by uploading an ID.',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17, color: Colors.grey),),
-          ),
-          const ListTile(
-            leading: Text('2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
-            title: Text('Buy Crypto', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black87),),
-            subtitle: Text('Use your Bank Debit or Credit card to fund any crypto buy.',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17, color: Colors.grey),),
-
-          ),
-          const ListTile(
-            leading: Text('3', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
-            title: Text('Sell at Anytime', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black87),),
-            subtitle: Text('Instantly sell your crypto for cash. Keep the cash in your wallet or withdraw to a linked bank.',
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17, color: Colors.grey),),
-
-          ),
-          const SizedBox(height: 30,),
-          Center(child: buildButton(context, 'Verify My Identity'))
-        ],
+            const Padding(
+               padding: EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10),
+              child: Text('Sell Crypto', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),) ,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 5),
+              child: Text('Verify your identity to sell crypto for cash', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.grey),) ,
+            ),
+            const Divider(thickness: 0.5,),
+            const SizedBox(height: 20),
+            const ListTile(
+              leading: Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
+              title: Text('Verify Your Identity', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
+              subtitle: Text('To prevent identity theft or fraud, we\'ll need a make sure it\'s really you by uploading an ID.',
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
+            ),
+            const SizedBox(height: 10),
+            const ListTile(
+              leading: Text('2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
+              title: Text('Buy Crypto', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
+              subtitle: Text('Use your Bank Debit or Credit card to fund any crypto buy.',
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
+    
+            ),
+            const SizedBox(height: 10),
+            const ListTile(
+              leading: Text('3', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
+              title: Text('Sell at Anytime', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
+              subtitle: Text('Instantly sell your crypto for cash. Keep the cash in your wallet or withdraw to a linked bank.',
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
+    
+            ),
+            const SizedBox(height: 30,),
+            Center(child: buildButton(context, 'Verify My Identity'))
+          ],
+        ),
       ),
     );
   }
 }
-
-class SliverHeader extends StatelessWidget {
-  const SliverHeader({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPersistentHeader(
-      pinned: false,
-      floating: false,
-      delegate: Delegate(),
-    );
-  }
-}
-
-class Delegate extends SliverPersistentHeaderDelegate {
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
-          SizedBox(height: 15),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Icon(
-              Icons.shopping_cart,
-              color: secondaryColor,
-              size: 30,
-            ),
-          ),
-          SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Buy with Cash or Card',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Select the crypto you want to buy',
-              style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w500),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Divider()
-        ],
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 120;
-
-  @override
-  double get minExtent => 120;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
-}
-
-
