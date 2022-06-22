@@ -66,24 +66,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ),
                   )
               : const BoxDecoration(),
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-              Icon(icon,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+            Icon(icon,
+                color: index == _selectedIndex
+                    ? secondaryColor
+                    : Colors.grey[400]),
+            Text(
+              text,
+              style: TextStyle(
+                  fontSize: 10,
                   color: index == _selectedIndex
                       ? secondaryColor
                       : Colors.grey[400]),
-              Text(
-                text,
-                style: TextStyle(
-                    fontSize: 10,
-                    color: index == _selectedIndex
-                        ? secondaryColor
-                        : Colors.grey[400]),
-              )
-            ]),
-          ),
+            )
+          ]),
         ));
   }
 }

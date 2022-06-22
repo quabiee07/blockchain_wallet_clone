@@ -20,44 +20,42 @@ class Delegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
-          SizedBox(height: 15),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Icon(
-              Icons.shopping_cart,
-              color: secondaryColor,
-              size: 30,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: const [
+        SizedBox(height: 15),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Icon(
+            Icons.shopping_cart,
+            color: secondaryColor,
+            size: 30,
           ),
-          SizedBox(height: 10),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Buy with Cash or Card',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-            ),
+        ),
+        SizedBox(height: 10),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'Buy with Cash or Card',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'Select the crypto you want to buy',
-              style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w500),
-            ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'Select the crypto you want to buy',
+            style: TextStyle(
+                fontSize: 13,
+                color: Colors.grey,
+                fontWeight: FontWeight.w500),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Divider()
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Divider()
+      ],
     );
   }
 

@@ -124,75 +124,78 @@ class _PricePageState extends State<PricePage> {
                 size: 30,
               )),
         ],),
-      body:  Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Center(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(20),
-                        label: Text('Search Coins'),
-                        suffixIcon: Icon(Icons.search),
+      body:  SingleChildScrollView(
+        child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Container(
+                    height: 70,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Center(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(20),
+                          label: Text('Search Coins'),
+                          suffixIcon: Icon(Icons.search),
+                        ),
                       ),
                     ),
-                  ),
-                )),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              flex: 1,
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: currencyName.length,
-                itemBuilder: (context, index) {
-                  final dynamic image = (images as List)[index];
-                  return ListTile(
-                    leading: Image.asset(image, scale: 1,),
-                    title: Text(
-                      currencyName[index],
-                      style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87),
-                    ),
-                    subtitle: Row(
-                      children: [
-                         Text(
-                          '\$${price[index]}',
-                          style: const TextStyle(fontSize: 15, color: Colors.black87),
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          '${percentage[index]}%',
-                          style: const TextStyle(
-                              fontSize: 16, color: Colors.green),
-                        ),
-                      ],
-                    ),
-                    trailing: const Icon(Icons.keyboard_arrow_right_rounded),
-                    onTap: () {},
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) => const Divider(),
-                scrollDirection: Axis.vertical,
+                  )),
+              const SizedBox(
+                height: 20,
               ),
-            ),
-          ],
-        ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 500 ,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: currencyName.length,
+                  itemBuilder: (context, index) {
+                    final dynamic image = (images as List)[index];
+                    return ListTile(
+                      leading: Image.asset(image, scale: 1,),
+                      title: Text(
+                        currencyName[index],
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87),
+                      ),
+                      subtitle: Row(
+                        children: [
+                           Text(
+                            '\$${price[index]}',
+                            style: const TextStyle(fontSize: 15, color: Colors.black87),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            '${percentage[index]}%',
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.green),
+                          ),
+                        ],
+                      ),
+                      trailing: const Icon(Icons.keyboard_arrow_right_rounded),
+                      onTap: () {},
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) => const Divider(),
+                  scrollDirection: Axis.vertical,
+                ),
+              ),
+            ],
+          ),
+      ),
 
 
     );

@@ -192,58 +192,56 @@ class _SellTabState extends State<SellTab> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Icon(
-                Icons.shopping_cart,
-                color: secondaryColor,
-                size: 35,
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:  [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Icon(
+              Icons.shopping_cart,
+              color: secondaryColor,
+              size: 35,
             ),
-            const Padding(
-               padding: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10),
-              child: Text('Sell Crypto', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),) ,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 5),
-              child: Text('Verify your identity to sell crypto for cash', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.grey),) ,
-            ),
-            const Divider(thickness: 0.5,),
-            const SizedBox(height: 20),
-            const ListTile(
-              leading: Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
-              title: Text('Verify Your Identity', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
-              subtitle: Text('To prevent identity theft or fraud, we\'ll need a make sure it\'s really you by uploading an ID.',
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
-            ),
-            const SizedBox(height: 10),
-            const ListTile(
-              leading: Text('2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
-              title: Text('Buy Crypto', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
-              subtitle: Text('Use your Bank Debit or Credit card to fund any crypto buy.',
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
+          ),
+          const Padding(
+             padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10),
+            child: Text('Sell Crypto', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),) ,
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 5),
+            child: Text('Verify your identity to sell crypto for cash', style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.grey),) ,
+          ),
+          const Divider(thickness: 0.5,),
+          const SizedBox(height: 20),
+          const ListTile(
+            leading: Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
+            title: Text('Verify Your Identity', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
+            subtitle: Text('To prevent identity theft or fraud, we\'ll need a make sure it\'s really you by uploading an ID.',
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
+          ),
+          const SizedBox(height: 10),
+          const ListTile(
+            leading: Text('2', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
+            title: Text('Buy Crypto', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
+            subtitle: Text('Use your Bank Debit or Credit card to fund any crypto buy.',
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
     
-            ),
-            const SizedBox(height: 10),
-            const ListTile(
-              leading: Text('3', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
-              title: Text('Sell at Anytime', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
-              subtitle: Text('Instantly sell your crypto for cash. Keep the cash in your wallet or withdraw to a linked bank.',
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
+          ),
+          const SizedBox(height: 10),
+          const ListTile(
+            leading: Text('3', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: popBlue),),
+            title: Text('Sell at Anytime', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Colors.black87),),
+            subtitle: Text('Instantly sell your crypto for cash. Keep the cash in your wallet or withdraw to a linked bank.',
+              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Colors.grey),),
     
-            ),
-            const SizedBox(height: 30,),
-            Center(child: buildButton(context, 'Verify My Identity'))
-          ],
-        ),
+          ),
+          const SizedBox(height: 30,),
+          Center(child: buildButton(context, 'Verify My Identity'))
+        ],
       ),
     );
   }
