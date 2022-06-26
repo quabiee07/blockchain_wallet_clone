@@ -10,6 +10,7 @@ import 'package:blockchain/pages/prices_page.dart';
 import 'package:blockchain/widgets/crypto_card_view.dart';
 import 'package:blockchain/widgets/currency_card_view.dart';
 import 'package:blockchain/widgets/nav_bar.dart';
+import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:flutter/material.dart';
 import 'settings_page.dart';
 
@@ -168,10 +169,12 @@ class _HomeBalanceState extends State<HomeBalance> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
+    return ListView(
+      shrinkWrap: true,
+      children: [
+      
       Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -239,10 +242,7 @@ class _HomeBalanceState extends State<HomeBalance> {
                   ),
                 ],
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 2,
-                child: Center(),
-              ),
+            
             ],
           ),
           const SizedBox(height: 20),
@@ -286,65 +286,95 @@ class _HomeBalanceState extends State<HomeBalance> {
 
   List<CryptoCardView> getCryptoCard() {
     final List<CryptoCardView> cryptoData = [
-      const CryptoCardView(
+       CryptoCardView(
         logo: "assets/bitcoin-btc-logo.png",
         cryptoName: "Bitcoin",
         amountInDollars: "7,890.90",
-        amountInCrypto: 0.19,
+        amountInCrypto: 0.00472,
         cryptoSymbol: " BTC",
-        hrChange: '24hrs',
-        cryptoPrice: '38,882.47',
+        hrChange: '  24hrs',
+        cryptoPrice: '21,043.41',
         percentage: 0.06,
+        lineChart: Sparkline(
+                  data:[0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
+                  lineWidth: 3.0,
+                  lineColor: Colors.orange,
+                ),
       ),
-     const CryptoCardView(
+      CryptoCardView(
         logo: "assets/ethereum-eth-logo.png",
         cryptoName: "Ether",
         amountInDollars: "1,159.26",
-        amountInCrypto: 0.36,
+        amountInCrypto: 0.9479,
         cryptoSymbol: " ETH",
-        hrChange: '24hrs',
-        cryptoPrice: '2,556.35',
+        hrChange: '  24hrs',
+        cryptoPrice: '1,165.99',
         percentage: 0.45,
+        lineChart: Sparkline(
+                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
+                  lineWidth: 3.0,
+                  lineColor:  Colors.purple,
+                ),
       ),
-      const CryptoCardView(
+       CryptoCardView(
         logo: "assets/dogecoin-doge-logo.png",
         cryptoName: "Dogecoin",
         amountInDollars: "2,304.21",
-        amountInCrypto: 0.72,
+        amountInCrypto: 342.71,
         cryptoSymbol: " DOGE",
-        hrChange: '24hrs',
-        cryptoPrice: '0.11330',
+        hrChange: '  24hrs',
+        cryptoPrice: '0.06619',
         percentage: 0.28,
+        lineChart: Sparkline(
+                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
+                  lineWidth: 3.0,
+                  lineColor: Colors.yellow,
+                ),
       ),
-      const CryptoCardView(
+       CryptoCardView(
         logo: "assets/bitcoin-cash-bch-logo.png",
         cryptoName: "Bitcoin Cash",
         amountInDollars: "303.32",
-        amountInCrypto: 0.94,
+        amountInCrypto: 2.58,
         cryptoSymbol: " BCH",
-        hrChange: '24hrs',
-        cryptoPrice: '287.28',
+        hrChange: '  24hrs',
+        cryptoPrice: '118.87',
         percentage: 0.82,
+        lineChart: Sparkline(
+                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
+                  lineWidth: 3.0,
+                  lineColor: Colors.green,
+                ),
       ),
-      const CryptoCardView(
+       CryptoCardView(
         logo: "assets/chainlink-link-logo.png",
         cryptoName: "ChainLink",
         amountInDollars: "6,845",
-        amountInCrypto: 447.46,
+        amountInCrypto: 949.42,
         cryptoSymbol: " LINK",
-        hrChange: '24hrs',
-        cryptoPrice: '13.06',
+        hrChange: '  24hrs',
+        cryptoPrice: '7.16',
         percentage: 3.59,
+        lineChart: Sparkline(
+                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
+                  lineWidth: 3.0,
+                  lineColor: Colors.blue,
+                ),
       ),
-      const CryptoCardView(
+       CryptoCardView(
         logo: "assets/algorand-algo-logo.png",
         cryptoName: "Algorand",
         amountInDollars: "4,198",
-        amountInCrypto: 3276.9588,
+        amountInCrypto: 327.98,
         cryptoSymbol: " ALGO",
-        hrChange: '24hrs',
-        cryptoPrice: '0.70',
+        hrChange: '  24hrs',
+        cryptoPrice: '0.349',
         percentage: 0.98,
+        lineChart: Sparkline(
+                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
+                  lineWidth: 3.0,
+                  lineColor: Colors.black54,
+                ),
       ),
     ];
     return cryptoData;

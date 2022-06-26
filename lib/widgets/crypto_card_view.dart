@@ -1,4 +1,4 @@
-import 'package:chart_sparkline/chart_sparkline.dart';
+
 import 'package:flutter/material.dart';
 
 class CryptoCardView extends StatelessWidget {
@@ -10,94 +10,93 @@ class CryptoCardView extends StatelessWidget {
   final double amountInCrypto;
   final String cryptoPrice;
   final double percentage;
-  const CryptoCardView(
-      {Key? key,
-      required this.logo,
-      required this.cryptoName,
-      required this.amountInDollars,
-      required this.amountInCrypto,
-      required this.cryptoSymbol,
-      required this.hrChange,
-      required this.cryptoPrice,
-      required this.percentage})
-      : super(key: key);
+  final Widget lineChart;
+  const CryptoCardView({
+    Key? key,
+    required this.logo,
+    required this.cryptoName,
+    required this.amountInDollars,
+    required this.amountInCrypto,
+    required this.cryptoSymbol,
+    required this.hrChange,
+    required this.cryptoPrice,
+    required this.percentage,
+    required this.lineChart,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int index = 0;
-    var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
-    var colors = [
-      Colors.blue,
-      Colors.purple,
-      Colors.red,
-      Colors.yellow,
-      Colors.green,
-      Colors.orange,
-      Colors.tealAccent
-    ];
     return ListTile(
       leading: Image.asset(logo),
-      title: SizedBox(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(cryptoName,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                  color: Colors.black87)),
+      title: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Text(
+          cryptoName,
+          style: const TextStyle(
+              fontWeight: FontWeight.w600, fontSize: 17, color: Colors.black87),
         ),
       ),
       subtitle: SizedBox(
+        width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('\$$amountInDollars',
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 17,
+                    fontSize: 15,
                     color: Colors.black87)),
+            const SizedBox(
+              height: 5,
+            ),
             Text(amountInCrypto.toString() + cryptoSymbol,
                 style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 17,
+                  fontSize:15,
+                    fontWeight: FontWeight.w500,                  
                     color: Colors.grey.shade500)),
           ],
         ),
       ),
-      trailing: SizedBox(
-
+      trailing: Container(
         width: 150,
+        constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width / 2, maxHeight: 200),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
-              child: SizedBox(
-                width: 100,
-                height: 300,
-                child: Sparkline(
-                  data: data,
-                  lineWidth: 3.0,
-                  lineColor: colors[index],
-                ),
-              ),
+              child: Container(
+                  width: 100,
+                  height: 300,
+                  constraints: BoxConstraints(minHeight: 20, maxHeight: 35),
+                  child: lineChart),
             ),
-            
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               '\$$cryptoPrice',
               maxLines: 1,
               style: const TextStyle(
-                  fontSize: 17,
+                  fontSize: 15,
                   color: Colors.black87,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(height: 5,),
-
-            Text(
-              percentage.toString(),
-              maxLines: 1,
-              style: const TextStyle(fontSize: 16, color: Colors.green),
+            SizedBox(
+              height: 5,
+            ),
+            RichText(
+              text: TextSpan(
+                  text: percentage.toString(),
+                  style: TextStyle(
+                      color: Colors.green.shade500,
+                      fontWeight: FontWeight.w600),
+                      children: [
+                        TextSpan(text: hrChange, style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontWeight: FontWeight.w600),)
+                      ]),
             ),
           ],
         ),

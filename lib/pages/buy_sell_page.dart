@@ -1,6 +1,5 @@
 import 'package:blockchain/color.dart';
 import 'package:blockchain/widgets/button.dart';
-import 'package:blockchain/widgets/circle.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/sliver_header.dart';

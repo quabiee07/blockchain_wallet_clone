@@ -20,10 +20,11 @@ Widget buildButton(BuildContext context, title) {
 Widget buildTextButton(BuildContext context) {
   // final ButtonStyle style = TextButton.styleFrom(
   //     primary: Colors.white, minimumSize: const Size(233.5, 50));
-  final width = MediaQuery.of(context).size.width/2.3;
+  final width = MediaQuery.of(context).size.width/4;
   final ButtonStyle style = TextButton.styleFrom(
-    minimumSize: Size(width, 50),
-    side: BorderSide(width: 1, color:  Colors.grey[300]!),
+    minimumSize: Size(100, 50),
+    side: BorderSide(width: 1, color:  Colors.grey[300]!,),
+    
     padding: const EdgeInsets.symmetric(horizontal: 10.0)
     
   );
@@ -32,22 +33,10 @@ Widget buildTextButton(BuildContext context) {
     //   side: MaterialStateProperty.all(
     //        BorderSide(width: 1, color: Colors.grey[300]!, )),
     //   foregroundColor: MaterialStateProperty.all(secondaryColor));
-  return Row(
-
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      TextButton(
+  return TextButton(
           style: style,
           onPressed: () {},
           child: const Text(
-            'Receive',
-          )),
-      TextButton(
-          style: style,
-          onPressed: () {},
-          child: const Text(
-            'Deposit',          
-          ))
-    ],
-  );
+            'Send Max',
+          ));
 }
