@@ -37,6 +37,7 @@ dependencies:
   pinput: ^2.1.4
   local_auth: ^1.1.11
   chart_sparkline: ^1.0.11
+  intl: ^0.17.0
   
 
 dev_dependencies:

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:math';
 
 import 'package:blockchain/color.dart';
@@ -10,8 +9,8 @@ import 'package:blockchain/pages/prices_page.dart';
 import 'package:blockchain/widgets/crypto_card_view.dart';
 import 'package:blockchain/widgets/currency_card_view.dart';
 import 'package:blockchain/widgets/nav_bar.dart';
-import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'settings_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -49,7 +48,9 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: secondaryColor,
         onPressed: () => showModalBottomSheet(
             enableDrag: true,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+            shape: const RoundedRectangleBorder(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(20))),
             context: context,
             builder: (context) {
               return AddFabPage();
@@ -149,15 +150,28 @@ class _HomeBalanceState extends State<HomeBalance> {
   double _balance = 12982.91;
   final _rand = Random();
   var counter = 0.0;
+  late int bal;
+  int balance = 3090;
 
   late Stream<double?> balanceStream;
   late List<Widget> cryptoData;
+  final TextEditingController _balanceController = TextEditingController();
+  var formatter = NumberFormat('#,###,000');
+
 
   Stream<double?> getBalance() async* {
     while (true) {
       await Future.delayed(const Duration(seconds: 7));
       yield _balance += _rand.nextInt(200) + 29;
     }
+  }
+
+  void _setBalance() {
+    setState(() {
+      balance = bal;
+      _balanceController.clear();
+    });
+    Navigator.pop(context);
   }
 
   @override
@@ -169,10 +183,7 @@ class _HomeBalanceState extends State<HomeBalance> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-      
+    return ListView(shrinkWrap: true, children: [
       Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,20 +214,64 @@ class _HomeBalanceState extends State<HomeBalance> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return Text('Wait');
+                          return const Text('Wait');
                         } else if (snapshot.hasData) {
-                          final balance = snapshot.data;
-                          return Text(
-                            '$balance',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
+                          return InkWell(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                      insetAnimationCurve: Curves.fastLinearToSlowEaseIn,
+                                      insetAnimationDuration:
+                                          const Duration(milliseconds: 700),
+                                      child: Container(
+                                        height: 200,
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                              controller: _balanceController,
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              decoration: InputDecoration(
+                                                  border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  label: const Text('Balance')),
+                                              onChanged: ((value) =>
+                                                  bal = int.parse(value)),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            ElevatedButton(
+                                                onPressed: _setBalance,
+                                                style: ButtonStyle(
+                                                    elevation:MaterialStateProperty.all(8),
+                                                    fixedSize: MaterialStateProperty.all(Size(100, 50)),
+                                                    backgroundColor:MaterialStateProperty.all(secondaryColor),),
+                                                child: const Text('Submit')),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            child: Text(
+                              '\$${formatter.format(balance)}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
                             ),
                           );
                         } else if (snapshot.hasError) {
                           return Text('${snapshot.error}');
                         } else {
-                          return Text('No Balance');
+                          return const Text('No Balance');
                         }
                       },
                     ),
@@ -242,7 +297,6 @@ class _HomeBalanceState extends State<HomeBalance> {
                   ),
                 ],
               ),
-            
             ],
           ),
           const SizedBox(height: 20),
@@ -286,98 +340,67 @@ class _HomeBalanceState extends State<HomeBalance> {
 
   List<CryptoCardView> getCryptoCard() {
     final List<CryptoCardView> cryptoData = [
-       CryptoCardView(
-        logo: "assets/bitcoin-btc-logo.png",
-        cryptoName: "Bitcoin",
-        amountInDollars: "7,890.90",
-        amountInCrypto: 0.00472,
-        cryptoSymbol: " BTC",
-        hrChange: '  24hrs',
-        cryptoPrice: '21,043.41',
-        percentage: 0.06,
-        lineChart: Sparkline(
-                  data:[0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
-                  lineWidth: 3.0,
-                  lineColor: Colors.orange,
-                ),
-      ),
-      CryptoCardView(
-        logo: "assets/ethereum-eth-logo.png",
-        cryptoName: "Ether",
-        amountInDollars: "1,159.26",
-        amountInCrypto: 0.9479,
-        cryptoSymbol: " ETH",
-        hrChange: '  24hrs',
-        cryptoPrice: '1,165.99',
-        percentage: 0.45,
-        lineChart: Sparkline(
-                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
-                  lineWidth: 3.0,
-                  lineColor:  Colors.purple,
-                ),
-      ),
-       CryptoCardView(
-        logo: "assets/dogecoin-doge-logo.png",
-        cryptoName: "Dogecoin",
-        amountInDollars: "2,304.21",
-        amountInCrypto: 342.71,
-        cryptoSymbol: " DOGE",
-        hrChange: '  24hrs',
-        cryptoPrice: '0.06619',
-        percentage: 0.28,
-        lineChart: Sparkline(
-                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
-                  lineWidth: 3.0,
-                  lineColor: Colors.yellow,
-                ),
-      ),
-       CryptoCardView(
-        logo: "assets/bitcoin-cash-bch-logo.png",
-        cryptoName: "Bitcoin Cash",
-        amountInDollars: "303.32",
-        amountInCrypto: 2.58,
-        cryptoSymbol: " BCH",
-        hrChange: '  24hrs',
-        cryptoPrice: '118.87',
-        percentage: 0.82,
-        lineChart: Sparkline(
-                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
-                  lineWidth: 3.0,
-                  lineColor: Colors.green,
-                ),
-      ),
-       CryptoCardView(
-        logo: "assets/chainlink-link-logo.png",
-        cryptoName: "ChainLink",
-        amountInDollars: "6,845",
-        amountInCrypto: 949.42,
-        cryptoSymbol: " LINK",
-        hrChange: '  24hrs',
-        cryptoPrice: '7.16',
-        percentage: 3.59,
-        lineChart: Sparkline(
-                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
-                  lineWidth: 3.0,
-                  lineColor: Colors.blue,
-                ),
-      ),
-       CryptoCardView(
-        logo: "assets/algorand-algo-logo.png",
-        cryptoName: "Algorand",
-        amountInDollars: "4,198",
-        amountInCrypto: 327.98,
-        cryptoSymbol: " ALGO",
-        hrChange: '  24hrs',
-        cryptoPrice: '0.349',
-        percentage: 0.98,
-        lineChart: Sparkline(
-                  data: [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5],
-                  lineWidth: 3.0,
-                  lineColor: Colors.black54,
-                ),
-      ),
+      const CryptoCardView(
+          logo: "assets/bitcoin-btc-logo.png",
+          cryptoName: "Bitcoin",
+          amountInDollars: "7,890.90",
+          amountInCrypto: 0.00472,
+          cryptoSymbol: " BTC",
+          hrChange: '  24hrs',
+          cryptoPrice: '21,043.41',
+          percentage: 0.06,
+          lineChart: SizedBox()),
+      const CryptoCardView(
+          logo: "assets/ethereum-eth-logo.png",
+          cryptoName: "Ether",
+          amountInDollars: "1,159.26",
+          amountInCrypto: 0.9479,
+          cryptoSymbol: " ETH",
+          hrChange: '  24hrs',
+          cryptoPrice: '1,165.99',
+          percentage: 0.45,
+          lineChart: SizedBox()),
+      const CryptoCardView(
+          logo: "assets/dogecoin-doge-logo.png",
+          cryptoName: "Dogecoin",
+          amountInDollars: "2,304.21",
+          amountInCrypto: 342.71,
+          cryptoSymbol: " DOGE",
+          hrChange: '  24hrs',
+          cryptoPrice: '0.06619',
+          percentage: 0.28,
+          lineChart: SizedBox()),
+      const CryptoCardView(
+          logo: "assets/bitcoin-cash-bch-logo.png",
+          cryptoName: "Bitcoin Cash",
+          amountInDollars: "303.32",
+          amountInCrypto: 2.58,
+          cryptoSymbol: " BCH",
+          hrChange: '  24hrs',
+          cryptoPrice: '118.87',
+          percentage: 0.82,
+          lineChart: SizedBox()),
+      const CryptoCardView(
+          logo: "assets/chainlink-link-logo.png",
+          cryptoName: "ChainLink",
+          amountInDollars: "6,845",
+          amountInCrypto: 949.42,
+          cryptoSymbol: " LINK",
+          hrChange: '  24hrs',
+          cryptoPrice: '7.16',
+          percentage: 3.59,
+          lineChart: SizedBox()),
+      const CryptoCardView(
+          logo: "assets/algorand-algo-logo.png",
+          cryptoName: "Algorand",
+          amountInDollars: "4,198",
+          amountInCrypto: 327.98,
+          cryptoSymbol: " ALGO",
+          hrChange: '  24hrs',
+          cryptoPrice: '0.349',
+          percentage: 0.98,
+          lineChart: SizedBox()),
     ];
     return cryptoData;
   }
 }
-

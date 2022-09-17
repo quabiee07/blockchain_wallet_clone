@@ -1,7 +1,7 @@
-import 'package:local_auth/local_auth.dart';
+// import 'package:local_auth/local_auth.dart';
 
 class LocalAuthAPI {
-  static final _auth = LocalAuthentication();
+  // static final _auth = LocalAuthentication();
 
   // static Future<bool> authenticate() async {
 
@@ -36,21 +36,21 @@ class LocalAuthAPI {
     
   // }
 
-   static Future<bool> authenticate() async {
-    final LocalAuthentication localAuthentication = LocalAuthentication();
-    bool isBiometricSupported = await localAuthentication.isDeviceSupported();
-    bool canCheckBiometrics = await localAuthentication.canCheckBiometrics;
+  //  static Future<bool> authenticate() async {
+  //   final LocalAuthentication localAuthentication = LocalAuthentication();
+  //   bool isBiometricSupported = await localAuthentication.isDeviceSupported();
+  //   bool canCheckBiometrics = await localAuthentication.canCheckBiometrics;
 
-    bool isAuthenticated = false;
+  //   bool isAuthenticated = false;
 
-    if (isBiometricSupported && canCheckBiometrics) {
-      isAuthenticated = await localAuthentication.authenticate(
-        localizedReason: 'Use your biometrics to log into the wallet',
-        biometricOnly: true,
-      );
-    }
+  //   if (isBiometricSupported && canCheckBiometrics) {
+  //     isAuthenticated = await localAuthentication.authenticate(
+  //       localizedReason: 'Use your biometrics to log into the wallet',
+  //       biometricOnly: true,
+  //     );
+  //   }
 
-    return isAuthenticated;
-  }
+  //   return isAuthenticated;
+  // }
 
 }

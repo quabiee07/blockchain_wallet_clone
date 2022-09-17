@@ -1,7 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class CryptoCardView extends StatelessWidget {
+import '../color.dart';
+
+class CryptoCardView extends StatefulWidget {
   final String logo;
   final String cryptoName;
   final String amountInDollars;
@@ -25,13 +27,126 @@ class CryptoCardView extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CryptoCardView> createState() => _CryptoCardViewState();
+}
+
+class _CryptoCardViewState extends State<CryptoCardView> {
+  var formatter = NumberFormat('#,###,000');
+  num cryptoAmount = 0;
+  num dollarAmount = 0;
+  num crypPrice = 0.0;
+  late num cryAm;
+  late num dolAm;
+  late num cryPri;
+
+  final _cryptoAmountController = TextEditingController();
+  final _dollarAmountController = TextEditingController();
+  final _cryptoPriceController = TextEditingController();
+
+  void setAmount() {
+    setState(() {
+      cryptoAmount = cryAm;
+      dollarAmount = dolAm;
+      crypPrice = cryPri;
+
+      _cryptoAmountController.clear();
+      _dollarAmountController.clear();
+      _cryptoPriceController.clear();
+    });
+    Navigator.pop(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(logo),
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return Dialog(
+                child: Container(
+                  height: 350,
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _cryptoAmountController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          label: Text('crypto amount'),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                        ),
+                        onChanged: ((value) => cryAm = int.parse(value)),
+                        validator: (text) {
+                          if (text == null || text.isEmpty) {
+                            return 'Text is empty';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        controller: _dollarAmountController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          label: Text('dollar amount'),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                        ),
+                        onChanged: ((value) => dolAm = int.parse(value)),
+                        validator: (text) {
+                          if (text == null || text.isEmpty) {
+                            return 'Text is empty';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        controller: _cryptoPriceController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          label: Text('crypto price'),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                        ),
+                        onChanged: ((value) => cryPri = int.parse(value)),
+                        validator: (text) {
+                          if (text == null || text.isEmpty) {
+                            return 'Text is empty';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                          onPressed: setAmount,
+                          style: ButtonStyle(
+                            elevation: MaterialStateProperty.all(8),
+                            fixedSize: MaterialStateProperty.all(
+                                Size(MediaQuery.of(context).size.width, 50)),
+                            backgroundColor:
+                                MaterialStateProperty.all(secondaryColor),
+                          ),
+                          child: const Text('Submit')),
+                    ],
+                  ),
+                ),
+              );
+            });
+      },
+      leading: Image.asset(widget.logo),
       title: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Text(
-          cryptoName,
+          widget.cryptoName,
           style: const TextStyle(
               fontWeight: FontWeight.w600, fontSize: 17, color: Colors.black87),
         ),
@@ -41,7 +156,7 @@ class CryptoCardView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('\$$amountInDollars',
+            Text('\$${formatter.format(dollarAmount)}',
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
@@ -49,10 +164,10 @@ class CryptoCardView extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Text(amountInCrypto.toString() + cryptoSymbol,
+            Text(cryptoAmount.toString() + widget.cryptoSymbol,
                 style: TextStyle(
-                  fontSize:15,
-                    fontWeight: FontWeight.w500,                  
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
                     color: Colors.grey.shade500)),
           ],
         ),
@@ -70,13 +185,13 @@ class CryptoCardView extends StatelessWidget {
                   width: 100,
                   height: 300,
                   constraints: BoxConstraints(minHeight: 20, maxHeight: 35),
-                  child: lineChart),
+                  child: widget.lineChart),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              '\$$cryptoPrice',
+              '\$${formatter.format(crypPrice)}',
               maxLines: 1,
               style: const TextStyle(
                   fontSize: 15,
@@ -88,15 +203,18 @@ class CryptoCardView extends StatelessWidget {
             ),
             RichText(
               text: TextSpan(
-                  text: percentage.toString(),
+                  text: widget.percentage.toString(),
                   style: TextStyle(
                       color: Colors.green.shade500,
                       fontWeight: FontWeight.w600),
-                      children: [
-                        TextSpan(text: hrChange, style: TextStyle(
-                              color: Colors.grey.shade500,
-                              fontWeight: FontWeight.w600),)
-                      ]),
+                  children: [
+                    TextSpan(
+                      text: widget.hrChange,
+                      style: TextStyle(
+                          color: Colors.grey.shade500,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ]),
             ),
           ],
         ),

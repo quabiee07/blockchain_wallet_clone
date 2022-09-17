@@ -78,7 +78,7 @@ class _AuthState extends State<Auth> {
               const SizedBox(
                 height: 30,
               ),
-              const FilledRoundedPinPut(),
+              // const FilledRoundedPinPut(),
               const SizedBox(
                 height: 10,
               ),
@@ -114,10 +114,10 @@ class _AuthState extends State<Auth> {
   }
 
   buildAuthentication(context) async {
-    final isAuthenticated = await LocalAuthAPI.authenticate();
-    if (isAuthenticated) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()));
-    }
+  //   final isAuthenticated = await LocalAuthAPI.authenticate();
+  //   if (isAuthenticated) {
+  //     Navigator.of(context).pushReplacement(
+  //         MaterialPageRoute(builder: (context) => const HomePage()));
+  //   }
   }
 }

@@ -175,7 +175,7 @@
 // }
 import 'package:blockchain/color.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/src/pinput.dart';
+// import 'package:pinput/src/pinput.dart';
 
 class NumPad extends StatelessWidget {
   final TextEditingController controller;
@@ -211,16 +211,16 @@ class NumPad extends StatelessWidget {
                               size: buttonSize,
                               onTap: () => print(controller.toString())
                               ),
-                          NumButton(
-                              number: '2',
-                              text: 'ABC',
-                              size: buttonSize,
-                              onTap: () => controller.append('2', 4)),
-                          NumButton(
-                              number: '3',
-                              text: 'DEF',
-                              size: buttonSize,
-                              onTap: () => controller.append('3', 4)),
+                          // NumButton(
+                          //     number: '2',
+                          //     text: 'ABC',
+                          //     size: buttonSize,
+                          //     onTap: () => controller.append('2', 4)),
+                          // NumButton(
+                          //     number: '3',
+                          //     text: 'DEF',
+                          //     size: buttonSize,
+                          //     onTap: () => controller.append('3', 4)),
                         ],
                       )),
                 ),
@@ -230,21 +230,21 @@ class NumPad extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        NumButton(
-                            number: '4',
-                            text: 'GHI',
-                            size: buttonSize,
-                            onTap: () => controller.append('4', 4)),
-                        NumButton(
-                            number: '5',
-                            text: 'JKL',
-                            size: buttonSize,
-                            onTap: () => controller.append('5', 4)),
-                        NumButton(
-                            number: '6',
-                            text: 'MNO',
-                            size: buttonSize,
-                            onTap: () => controller.append('6', 4)),
+                        // NumButton(
+                        //     number: '4',
+                        //     text: 'GHI',
+                        //     size: buttonSize,
+                        //     onTap: () => controller.append('4', 4)),
+                        // NumButton(
+                        //     number: '5',
+                        //     text: 'JKL',
+                        //     size: buttonSize,
+                        //     onTap: () => controller.append('5', 4)),
+                        // NumButton(
+                        //     number: '6',
+                        //     text: 'MNO',
+                        //     size: buttonSize,
+                        //     onTap: () => controller.append('6', 4)),
                       ],
                     ),
                   ),
@@ -255,21 +255,21 @@ class NumPad extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        NumButton(
-                            number: '7',
-                            text: 'PQRS ',
-                            size: buttonSize,
-                            onTap: () => controller.append('7', 4)),
-                        NumButton(
-                            number: '8',
-                            text: 'TUV',
-                            size: buttonSize,
-                            onTap: () => controller.append('8', 4)),
-                        NumButton(
-                            number: '9',
-                            text: 'WXYZ',
-                            size: buttonSize,
-                            onTap: () => controller.append('9', 4)),
+                        // NumButton(
+                        //     number: '7',
+                        //     text: 'PQRS ',
+                        //     size: buttonSize,
+                        //     onTap: () => controller.append('7', 4)),
+                        // NumButton(
+                        //     number: '8',
+                        //     text: 'TUV',
+                        //     size: buttonSize,
+                        //     onTap: () => controller.append('8', 4)),
+                        // NumButton(
+                        //     number: '9',
+                        //     text: 'WXYZ',
+                        //     size: buttonSize,
+                        //     onTap: () => controller.append('9', 4)),
                       ],
                     ),
                   ),
@@ -280,22 +280,22 @@ class NumPad extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const SizedBox(
-                        height: 70,
-                        width: 70,
-                      ),
-                      NumButton(
-                          number: '0',
-                          text: '',
-                          size: buttonSize,
-                          onTap: () => controller.append('0', 4)),
-                      IconButton(
-                        onPressed: () {
-                          controller.delete();
-                        },
-                        icon: Image.asset("assets/clear.png"),
-                        iconSize: 40,
-                      )
+                      // const SizedBox(
+                      //   height: 70,
+                      //   width: 70,
+                      // ),
+                      // NumButton(
+                      //     number: '0',
+                      //     text: '',
+                      //     size: buttonSize,
+                      //     onTap: () => controller.append('0', 4)),
+                      // IconButton(
+                      //   onPressed: () {
+                      //     controller.delete();
+                      //   },
+                      //   icon: Image.asset("assets/clear.png"),
+                      //   iconSize: 40,
+                      // )
                     ],
                   ),
                 ),
